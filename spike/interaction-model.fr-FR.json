@@ -1,0 +1,215 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "claude",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": [
+            "merci",
+            "c'est tout",
+            "c'est bon merci"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AskClaudeIntent",
+          "slots": [
+            {
+              "name": "query",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "question {query}",
+            "dis moi {query}",
+            "je me demande {query}",
+            "de {query}",
+            "réponds {query}",
+            "j'ai une question {query}",
+            "aide moi à {query}"
+          ]
+        },
+        {
+          "name": "AskPourquoiIntent",
+          "slots": [
+            {
+              "name": "query",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "pourquoi {query}"
+          ]
+        },
+        {
+          "name": "AskCommentIntent",
+          "slots": [
+            {
+              "name": "query",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "comment {query}"
+          ]
+        },
+        {
+          "name": "AskQuiIntent",
+          "slots": [
+            {
+              "name": "query",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "qui {query}"
+          ]
+        },
+        {
+          "name": "AskQuelIntent",
+          "slots": [
+            {
+              "name": "query",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "quel {query}",
+            "quelle {query}",
+            "quels {query}",
+            "quelles {query}"
+          ]
+        },
+        {
+          "name": "AskCombienIntent",
+          "slots": [
+            {
+              "name": "query",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "combien {query}"
+          ]
+        },
+        {
+          "name": "AskQuandIntent",
+          "slots": [
+            {
+              "name": "query",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "quand {query}"
+          ]
+        },
+        {
+          "name": "AskOuIntent",
+          "slots": [
+            {
+              "name": "query",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "où {query}"
+          ]
+        },
+        {
+          "name": "AskQuoiIntent",
+          "slots": [
+            {
+              "name": "query",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "c'est quoi {query}",
+            "qu'est ce que {query}",
+            "que {query}"
+          ]
+        },
+        {
+          "name": "AskEstCeQueIntent",
+          "slots": [
+            {
+              "name": "query",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "est ce que {query}"
+          ]
+        },
+        {
+          "name": "AskExpliqueIntent",
+          "slots": [
+            {
+              "name": "query",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "explique moi {query}",
+            "explique {query}"
+          ]
+        },
+        {
+          "name": "AskDonneIntent",
+          "slots": [
+            {
+              "name": "query",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "donne moi {query}"
+          ]
+        },
+        {
+          "name": "AskRaconteIntent",
+          "slots": [
+            {
+              "name": "query",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "raconte moi {query}"
+          ]
+        },
+        {
+          "name": "AskPeuxTuIntent",
+          "slots": [
+            {
+              "name": "query",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "peux tu {query}",
+            "tu peux {query}"
+          ]
+        }
+      ],
+      "types": []
+    }
+  }
+}

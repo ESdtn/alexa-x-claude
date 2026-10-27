@@ -92,7 +92,7 @@ Pour ne pas perdre les mots interrogatifs, on utilise **une intention par mot po
 | `AskExpliqueIntent` | `explique-moi {query}`, `explique {query}` | `explique-moi` |
 | … | liste complète dans `model/carriers.fr-FR.json` | |
 
-Toutes ces intentions sont traitées par le même handler. Une faute d'accord (« quel » au lieu de « quelles ») ne gêne pas Claude. La table se complète au fil des tests réels, sans toucher au code.
+Toutes ces intentions sont traitées par le même handler. Avant de reconstruire la question, le handler recolle les élisions qu'Alexa sépare dans le slot (`l' imprimerie` → `l'imprimerie`, `c' est` → `c'est`), constat du [spike](spike-results.md). Une faute d'accord (« quel » au lieu de « quelles ») ne gêne pas Claude. La table se complète au fil des tests réels, sans toucher au code.
 
 > **À valider en phase 0** : l'ouverture en une phrase (« demande à Claude pourquoi… ») et la qualité de capture en français.
 
@@ -105,11 +105,14 @@ const res = await client.messages.create({
   model: cfg.claudeModel,          // claude-haiku-5-5
   max_tokens: cfg.claudeMaxTokens, // 300
   system: SYSTEM_PROMPT,
+  thinking: { type: "disabled" },  // Haiku 5.5 réfléchit par défaut
+  output_config: { effort: "low" },
   messages: [...history, { role: "user", content: question }],
 });
 ```
 
-- **Pas de réflexion étendue**, pas d'outils, pas de streaming en V1.
+- **Réflexion désactivée explicitement** : sur Haiku 5.5 la réflexion adaptative est active par défaut, ce qui ajoute de la latence et consomme `max_tokens`. La désactivation n'est acceptée qu'avec un effort `high` ou inférieur. Le spike compare les deux réglages.
+- Pas d'outils, pas de streaming en V1.
 - **Pas de nouvelle tentative** : un second essai ferait dépasser la limite Alexa.
 - Le texte retourné est la concaténation des blocs `text` de `res.content`.
 - Si `stop_reason === "max_tokens"`, on coupe à la dernière fin de phrase complète.
