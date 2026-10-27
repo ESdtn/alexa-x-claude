@@ -4,7 +4,7 @@ Code jetable pour lever les inconnues bloquantes avant la V1 (voir [Implementati
 
 | Fichier | Rôle |
 |---|---|
-| `lambda/index.mjs` | Lambda : mode `echo` (répète la question captée) ou `claude` (lit la réponse et son temps) ; mode mesure via `{ "bench": … }` |
+| `lambda/index.mjs` | Lambda : mode `echo` (répète la question captée) ou `claude` (lit la réponse ; la durée de l'appel est dans les logs) ; mode mesure via `{ "bench": … }` |
 | `lambda/carriers.mjs` | Intentions et mots porteurs (préfixe rajouté devant la question) |
 | `build-model.mjs` | Génère `interaction-model.fr-FR.json` à partir de `carriers.mjs` |
 | `deploy.sh [SKILL_ID]` | Crée ou met à jour le rôle IAM et la Lambda `alexa-claude-spike` (eu-west-1) |

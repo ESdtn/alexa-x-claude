@@ -1,6 +1,6 @@
 // Lambda jetable du spike (phase 0). Deux modes, choisis par la variable MODE :
 // - "echo"   : répète la question reconstruite et l'intention reçue (test du nom d'appel et de la capture) ;
-// - "claude" : appelle Claude et lit la réponse, suivie du temps de réponse.
+// - "claude" : appelle Claude et lit la réponse (la durée de l'appel n'est que dans les logs).
 // Un appel direct avec { "bench": { "question": "…" } } mesure la latence de Claude sans passer par Alexa.
 import Anthropic from "@anthropic-ai/sdk";
 import { SSMClient, GetParameterCommand } from "@aws-sdk/client-ssm";
@@ -107,8 +107,7 @@ async function handleQuestion(intent, requestId) {
   try {
     const r = await askClaude(question);
     log({ event: "ask", requestId, intent: intent.name, question, claudeMs: r.claudeMs, stopReason: r.stopReason, usage: r.usage });
-    const seconds = (r.claudeMs / 1000).toFixed(1).replace(".", ",");
-    return speak(`${toSpeech(r.text)} … Réponse en ${seconds} secondes.`, { reprompt: "Autre chose ?" });
+    return speak(toSpeech(r.text), { reprompt: "Autre chose ?" });
   } catch (err) {
     const errorType = classifyError(err);
     log({ event: "error", requestId, intent: intent.name, question, errorType, message: String(err?.message ?? err) });
